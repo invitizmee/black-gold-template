@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8">
+    <title>Mini Lightbox</title>
+    <meta name="description"
+        content="Prosty lightbox do wyswietlania zdjec w wiekszym rozmiarze, bez uzycia jQuery, bardzo lekki">
+    <meta name="viewport" content="width=device-width">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/lightbox.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+</head>
+
+<body class="bg-dark">
+
+     <!-- audio -->
+     <div class="container msc">
+        <button class="btn btn-danger" class="display-none" onclick="toggleMusic()" id="btn-playback"
+            data-play="false">
+            <i class="fa fa-play"></i>
+        </button>
+        <audio id="audio">
+            <source id="audio" src="../rer.mp3" type="audio/mp3">
+        </audio>
+    </div>
+
+    <!-- audio akhir -->
+
+    <header style=" padding-top: 50px ; padding-bottom: 50px;">
+        <h1>
+            Welcome to Our Gallery
+        </h1>
+        <img src="../images/hr white.svg"
+            style="padding-top: 10px; margin-left: auto; margin-right: auto; width: 250px; height: auto; display: block;"
+            alt="">
+    </header>
+    <main>
+        <section style="padding-bottom: 80px;">
+            <ul>
+                <li>
+                    <a class="link-photo" data-lightbox="img" href="img/galeri1.jpg" title="Powieksz zdjecie">
+                        <img src="img/galeri1th.jpg" alt="demo">
+                    </a>
+                </li>
+                <li>
+                    <a class="link-photo" data-lightbox="img" href="img/galeri2.jpg" title="Powieksz zdjecie">
+                        <img src="img/galeri2th.jpg" alt="demo">
+                    </a>
+                </li>
+                <li>
+                    <a class="link-photo" data-lightbox="img" href="img/galeri3.jpg" title="Powieksz zdjecie">
+                        <img src="img/galeri3th.jpg" alt="demo">
+                    </a>
+                </li>
+                <li>
+                    <a class="link-photo" data-lightbox="img" href="img/galeri1.jpg" title="Powieksz zdjecie">
+                        <img src="img/galeri1th.jpg" alt="demo">
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <div data-aos="fade-up">
+            <img src="../images/wm.png" style="width: 200%; max-width: 100%; height: auto;">
+        </div>
+    </main>
+
+    <footer>
+    </footer>
+    <script src="js/lightbox.min.js"></script>
+    <script>
+        const lb = lightbox();
+    </script>
+
+    <!-- audio -->
+<script>
+    const myAudio = document.getElementById("audio");
+    const btn = document.getElementById("btn-playback");
+    const btnIcon = document.querySelector("#btn-playback > i");
+    const btnText = document.getElementById("btn-text");
+
+    const toggleMusic = () => {
+        const dataPlay = btn.getAttribute('data-play');
+
+        if (dataPlay === 'false') {
+            btn.setAttribute('data-play', 'true');
+            myAudio.play();
+            btnIcon.classList.remove("fa-play");
+            btnIcon.classList.add("fa-pause");
+            btnText.innerText = "PAUSE";
+        } else {
+            btn.setAttribute('data-play', 'false');
+            myAudio.pause();
+            btnIcon.classList.remove("fa-pause");
+            btnIcon.classList.add("fa-play");
+            btnText.innerText = "PLAY";
+        }
+    };
+
+    myAudio.onpause = () => {
+        btn.setAttribute('data-play', 'false');
+        myAudio.pause();
+        btnIcon.classList.remove("fa-pause");
+        btnIcon.classList.add("fa-play");
+        btnText.innerText = "PLAY";
+    };
+</script>
+</body>
+
+</html>
